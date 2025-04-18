@@ -1,0 +1,32 @@
+captive_portal:
+
+web_server:
+  port: 80
+  
+i2c:
+  - id: bus_a
+    sda: GPIO4
+    scl: GPIO5
+    scan: true
+
+binary_sensor:
+  - platform: status
+    name: "Status"
+    id: status_sensor
+
+sensor:
+  - platform: bme280_i2c
+    temperature:
+      name: "Ambient temperature"
+      oversampling: 16x
+    pressure:
+      name: "Atmospheric pressure"
+    humidity:
+      name: "Air humidity"
+    address: 0x76
+    update_interval: 300s
+    i2c_id: bus_a
+  - platform: wifi_signal
+    name: "Wi-Fi Signal"
+    update_interval: 60s
+    icon: mdi:wifi
