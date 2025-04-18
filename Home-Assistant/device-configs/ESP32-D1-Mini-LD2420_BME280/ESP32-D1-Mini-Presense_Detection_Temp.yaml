@@ -1,0 +1,88 @@
+captive_portal:
+
+web_server:
+  port: 80
+
+#BME280TempSensorConfig
+i2c:
+  - id: bus_a
+    sda: GPIO4
+    scl: GPIO5
+    scan: true
+
+#LD2420 PD Config 
+uart:
+  id: ubus
+  tx_pin: GPIO1  # Change based on your wiring
+  rx_pin: GPIO3  # Change based on your wiring
+  baud_rate: 115200  # Use 256000 for firmware < v1.5.3
+  parity: NONE
+  stop_bits: 1   
+
+
+ld2420:
+
+text_sensor:
+  - platform: ld2420
+    fw_version:
+      name: LD2420 Firmware
+
+sensor:
+  - platform: ld2420
+    moving_distance:
+      name : Moving Distance
+  - platform: bme280_i2c
+    temperature:
+      name: "Ambient temperature"
+      oversampling: 16x
+    pressure:
+      name: "Atmospheric pressure"
+    humidity:
+      name: "Air humidity"
+    address: 0x76 #If your wiring is correct but still cannot read the sensor, change this to 0x75
+    update_interval: 300s
+    i2c_id: bus_a
+  - platform: wifi_signal
+    name: "Wi-Fi Signal"
+    update_interval: 60s
+    icon: mdi:wifi  
+      
+
+binary_sensor:
+  - platform: ld2420
+    has_target:
+      name: Presence
+  - platform: status
+    name: "Status"
+    id: status_sensor
+
+select:
+  - platform: ld2420
+    operating_mode:
+      name: Operating Mode
+
+number:
+  - platform: ld2420
+    presence_timeout:
+      name: Detection Presence Timeout
+    min_gate_distance:
+      name: Detection Gate Minimum
+    max_gate_distance:
+      name: Detection Gate Maximum
+    gate_select:
+      name: Select Gate to Set
+    still_threshold:
+      name: Set Still Threshold Value
+    move_threshold:
+      name: Set Move Threshold Value
+
+button:
+  - platform: ld2420
+    apply_config:
+      name: Apply Config
+    factory_reset:
+      name: Factory Reset
+    restart_module:
+      name: Restart Module
+    revert_config:
+      name: Undo Edits
