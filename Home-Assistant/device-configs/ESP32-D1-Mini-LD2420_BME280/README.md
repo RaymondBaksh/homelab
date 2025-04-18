@@ -1,5 +1,7 @@
 ESP32 D1 Mini with LD2420 and BME280
 
+![image](https://github.com/user-attachments/assets/2a38d163-fad5-4234-9cee-a4aa1945e17a)
+
 This project demonstrates how to connect an ESP32 D1 Mini with an LD2420 presence detection sensor and a BME280 sensor. 
 
 Project Overview
@@ -44,6 +46,3 @@ Connect the components as follows:
         SCL -> GPIO5 on ESP32 D1 Mini
 
 Note: It's always a good idea to double-check the pinout of your specific board.
-
-
-![image](https://github.com/user-attachments/assets/2a38d163-fad5-4234-9cee-a4aa1945e17a)
