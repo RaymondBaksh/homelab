@@ -2,7 +2,7 @@
 
 ###
 #Step 1
-sudo apt-update && apt-upgrade
+sudo apt update && sudo apt upgrade -y
 curl -fsSL get.docker.com | sh
 apt install \
 apparmor \
@@ -27,16 +27,13 @@ wget -y
 #Step 2
 cd /tmp
 wget https://github.com/home-assistant/os-agent/releases/download/1.7.2/os-agent_1.7.2_linux_aarch64.deb
-chmod +x os-agent_1.7.2_linux_aarch64.deb
 sudo dpkg -i os-agent_1.7.2_linux_aarch64.deb
 ###
 
 ###
 #Step 3
 wget -O homeassistant-supervised.deb https://github.com/home-assistant/supervised-installer/releases/latest/download/homeassistant-supervised.deb
-apt install ./homeassistant-supervised.deb
-chmod +x homeassistant-supervised.deb
-apt install ./homeassistant-supervised.deb
+sudo apt install ./homeassistant-supervised.deb -y
 ###
 
 #Wait for HomeAssistant to come online, check at IPADDRESS:8321

@@ -1,10 +1,10 @@
 resource "aws_subnet" "public_subnet" {
   vpc_id = aws_vpc.custom_vpc.id
-  cidr_block = "10.0.2.0/24"
-  availability_zone = "us-east-1a"
+  cidr_block = var.public_subnet_cidr
+  availability_zone = var.availability_zone
   map_public_ip_on_launch = true
 
   tags = {
-    "Name" = "10.0.2.0 - us-east-1"
+    "Name" = "${var.public_subnet_cidr} - ${var.availability_zone}"
   }
 }
