@@ -17,10 +17,10 @@ filter {
 
 resource "aws_instance" "ec2-control-node" {
     ami = data.aws_ami.ubuntu.id
-    instance_type = "t2.micro"
+    instance_type = var.instance_type
     subnet_id = aws_subnet.public_subnet.id
     vpc_security_group_ids = [aws_security_group.custom_security_group.id]
-    key_name = "aws-vpc-cluster"
+    key_name = var.key_name
     
     tags = {
          "Name" = "ec2-control-node"
@@ -28,10 +28,10 @@ resource "aws_instance" "ec2-control-node" {
 }
 resource "aws_instance" "ec2-worker1-node" {
     ami = data.aws_ami.ubuntu.id
-    instance_type = "t2.micro"
+    instance_type = var.instance_type
     subnet_id = aws_subnet.public_subnet.id
     vpc_security_group_ids = [aws_security_group.custom_security_group.id]
-    key_name = "aws-vpc-cluster"
+    key_name = var.key_name
     
     tags = {
          "Name" = "ec2-worker1-node"
@@ -39,10 +39,10 @@ resource "aws_instance" "ec2-worker1-node" {
 }
 resource "aws_instance" "ec2-worker2-node" {
     ami = data.aws_ami.ubuntu.id
-    instance_type = "t2.micro"
+    instance_type = var.instance_type
     subnet_id = aws_subnet.public_subnet.id
     vpc_security_group_ids = [aws_security_group.custom_security_group.id]
-    key_name = "aws-vpc-cluster"
+    key_name = var.key_name
     
     tags = {
          "Name" = "ec2-worker2-node"
